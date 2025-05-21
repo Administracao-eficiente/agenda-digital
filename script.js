@@ -1,93 +1,78 @@
-const form = document.querySelector("form");
-const input = document.getElementById("tarefa");
+const form = document.getElementById("form-tarefa");
 const lista = document.getElementById("lista");
+const relatorio = document.getElementById("relatorio");
 
-const focoDiv = document.getElementById("foco");
-const tarefaFoco = document.getElementById("tarefa-foco");
-const barra = document.getElementById("barra-progresso");
-const tempoTexto = document.getElementById("tempo-restante");
+let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
-let tempoTotal = 25 * 60; // 25 minutos
-let tempoRestante = tempoTotal;
-let timer = null;
+function atualizarRelatorio() {
+  const total = tarefas.length;
+  const concluidas = tarefas.filter(t => t.status === "Concluída").length;
 
-document.addEventListener("DOMContentLoaded", carregarTarefasSalvas);
+  relatorio.innerHTML = `
+    <p>Total de tarefas: ${total}</p>
+    <p>Concluídas: ${concluidas}</p>
+  `;
+}
 
-form.addEventListener("submit", function (e) {
+function salvarTarefas() {
+  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+}
+
+function renderizarTarefas() {
+  lista.innerHTML = '';
+
+  tarefas.forEach((tarefa, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <strong>${tarefa.nome}</strong>
+      <p>${tarefa.descricao}</p>
+      <p>Prazo: ${tarefa.data}</p>
+      <p>Prioridade: ${tarefa.prioridade}</p>
+      <p>Status: ${tarefa.status}</p>
+      <button onclick="concluirTarefa(${index})">Concluir</button>
+      <button onclick="removerTarefa(${index})">🗑️ Remover</button>
+    `;
+    lista.appendChild(li);
+  });
+
+  atualizarRelatorio();
+}
+
+function concluirTarefa(index) {
+  tarefas[index].status = "Concluída";
+  salvarTarefas();
+  renderizarTarefas();
+}
+
+function removerTarefa(index) {
+  tarefas.splice(index, 1);
+  salvarTarefas();
+  renderizarTarefas();
+}
+
+form.addEventListener("submit", function(e) {
   e.preventDefault();
-  const texto = input.value.trim();
-  if (texto !== "") {
-    adicionarTarefa(texto);
-    salvarTarefa(texto);
-    input.value = "";
+
+  const nome = document.getElementById("tarefa").value.trim();
+  const descricao = document.getElementById("descricao").value.trim();
+  const data = document.getElementById("data").value;
+  const prioridade = document.getElementById("prioridade").value;
+
+  if (nome && data) {
+    const novaTarefa = {
+      nome,
+      descricao,
+      data,
+      prioridade,
+      status: "A Fazer"
+    };
+
+    tarefas.push(novaTarefa);
+    salvarTarefas();
+    renderizarTarefas();
+
+    form.reset();
   }
 });
 
-function adicionarTarefa(texto) {
-  const li = document.createElement("li");
-  li.textContent = texto;
-
-  const botaoRemover = document.createElement("button");
-  botaoRemover.textContent = "🗑️";
-  botaoRemover.style.marginLeft = "10px";
-  botaoRemover.onclick = function () {
-    lista.removeChild(li);
-    removerTarefa(texto);
-  };
-
-  const botaoFoco = document.createElement("button");
-  botaoFoco.textContent = "⏱️ Iniciar Foco";
-  botaoFoco.style.marginLeft = "10px";
-  botaoFoco.onclick = function () {
-    iniciarFoco(texto);
-  };
-
-  li.appendChild(botaoRemover);
-  li.appendChild(botaoFoco);
-  lista.appendChild(li);
-}
-
-function salvarTarefa(texto) {
-  const tarefas = JSON.parse(localStorage.getItem("tarefas") || "[]");
-  tarefas.push(texto);
-  localStorage.setItem("tarefas", JSON.stringify(tarefas));
-}
-
-function removerTarefa(texto) {
-  let tarefas = JSON.parse(localStorage.getItem("tarefas") || "[]");
-  tarefas = tarefas.filter(tarefa => tarefa !== texto);
-  localStorage.setItem("tarefas", JSON.stringify(tarefas));
-}
-
-function carregarTarefasSalvas() {
-  const tarefas = JSON.parse(localStorage.getItem("tarefas") || "[]");
-  tarefas.forEach(adicionarTarefa);
-}
-
-function iniciarFoco(tarefa) {
-  clearInterval(timer);
-  tempoRestante = tempoTotal;
-  tarefaFoco.textContent = `Foco em: ${tarefa}`;
-  focoDiv.style.display = "block";
-  atualizarBarra();
-
-  timer = setInterval(() => {
-    tempoRestante--;
-    atualizarBarra();
-
-    if (tempoRestante <= 0) {
-      clearInterval(timer);
-      tempoTexto.textContent = "Concluído!";
-      barra.style.width = "100%";
-    }
-  }, 1000);
-}
-
-function atualizarBarra() {
-  const minutos = Math.floor(tempoRestante / 60);
-  const segundos = tempoRestante % 60;
-  tempoTexto.textContent = `${String(minutos).padStart(2, '0')}:${String(segundos).padStart(2, '0')}`;
-
-  const progresso = ((tempoTotal - tempoRestante) / tempoTotal) * 100;
-  barra.style.width = `${progresso}%`;
-}
+renderizarTarefas();
