@@ -7,29 +7,32 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
- <div class="container">
-  <img src="logo.png" alt="Logo da Agenda" class="logo" />
-  <h1>Agenda Digital</h1>
+  <div class="container">
+    <img src="logo.png" alt="Logo da Agenda" class="logo" />
+    <h1>Agenda Digital</h1>
 
     <form id="form-tarefa">
-      <input type="text" id="tarefa" placeholder="Digite uma tarefa" required />
+      <input type="text" id="tarefa" placeholder="Nome da Tarefa" required />
+      <textarea id="descricao" placeholder="Descrição da Tarefa"></textarea>
       <input type="date" id="data" required />
+      <select id="prioridade">
+        <option>Alta</option>
+        <option>Média</option>
+        <option>Baixa</option>
+      </select>
       <button type="submit">Adicionar</button>
     </form>
 
+    <h2>Lista de Tarefas</h2>
     <ul id="lista"></ul>
-    <div id="foco">
-  <h2>Modo Foco</h2>
-  <p id="tarefa-foco">Nenhuma tarefa em foco</p>
-  <div id="barra-container">
-    <div id="barra-progresso"></div>
-  </div>
-  <p id="tempo-restante">25:00</p>
-</div>
 
+    <h2>Relatório de Produtividade</h2>
+    <div id="relatorio">
+      <p>Total de tarefas: 0</p>
+      <p>Concluídas: 0</p>
+    </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>
