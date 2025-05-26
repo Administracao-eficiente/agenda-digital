@@ -31,28 +31,30 @@ body {
   margin-bottom: 20px;
 }
 
-h1, h2 {
+h1 {
   margin-bottom: 20px;
   color: #4FC3F7;
 }
 
 h2 {
-  margin-top: 30px; /* Espaço acima da Lista de Tarefas */
+  margin-top: 40px; /* Espaço acima dos títulos como "Lista de Tarefas" */
+  margin-bottom: 20px;
+  color: #4FC3F7;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;  /* Aumentado o espaçamento */
-  margin-bottom: 30px;
+  gap: 15px;
+  margin-bottom: 40px; /* Mais espaço abaixo do formulário */
 }
 
 input, textarea, select {
-  padding: 12px;  /* Mais espaço interno */
+  padding: 12px;
   border: none;
   border-radius: 8px;
   outline: none;
-  font-size: 1em;  /* Melhora para mobile */
+  font-size: 1em;
 }
 
 button {
@@ -74,11 +76,12 @@ button:hover {
 ul {
   list-style-type: none;
   padding: 0;
+  margin-top: 20px; /* Espaço acima da lista de tarefas */
 }
 
 li {
   background-color: #1B3A75;
-  margin-bottom: 15px;  /* Mais espaço entre tarefas */
+  margin-bottom: 15px;
   padding: 15px;
   border-radius: 10px;
   text-align: left;
@@ -86,7 +89,7 @@ li {
 
 li strong {
   display: block;
-  margin-bottom: 8px;  /* Mais espaço no título */
+  margin-bottom: 8px;
   font-size: 1.1em;
 }
 
@@ -108,7 +111,7 @@ li button:hover {
 }
 
 #relatorio {
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 1em;
 }
 
@@ -117,12 +120,13 @@ select#filtro {
   padding: 12px;
   border-radius: 8px;
   border: none;
-  margin-bottom: 30px; /* Aumentado para dar espaço abaixo do filtro */
+  margin-top: 20px;
+  margin-bottom: 40px; /* Aumentado para mais espaçamento visual */
 }
 
 .filter-label {
-  margin-top: 15px;
-  margin-bottom: 8px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   font-size: 1em;
   color: #ccc;
 }
