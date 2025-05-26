@@ -36,6 +36,10 @@ h1, h2 {
   color: #4FC3F7;
 }
 
+h2 {
+  margin-top: 30px; /* Espaço acima da Lista de Tarefas */
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -113,7 +117,7 @@ select#filtro {
   padding: 12px;
   border-radius: 8px;
   border: none;
-  margin-bottom: 20px;
+  margin-bottom: 30px; /* Aumentado para dar espaço abaixo do filtro */
 }
 
 .filter-label {
