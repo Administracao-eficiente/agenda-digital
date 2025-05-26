@@ -2,13 +2,13 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agenda Digital</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Logo da Agenda" class="logo" />
+    <img src="logo.png" alt="Logo da Agenda" class="logo"/>
     <h1>Agenda Digital</h1>
 
     <form id="form-tarefa">
@@ -22,6 +22,15 @@
       </select>
       <button type="submit">Adicionar</button>
     </form>
+
+    <div class="filtros">
+      <label for="filtro-status">Filtrar:</label>
+      <select id="filtro-status">
+        <option value="Todas">Todas</option>
+        <option value="A Fazer">A Fazer</option>
+        <option value="Concluída">Concluídas</option>
+      </select>
+    </div>
 
     <h2>Lista de Tarefas</h2>
     <ul id="lista"></ul>
