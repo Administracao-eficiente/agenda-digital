@@ -1,120 +1,149 @@
-const form = document.getElementById("form-tarefa");
-const lista = document.getElementById("lista");
-const relatorio = document.getElementById("relatorio");
-const filtroStatus = document.getElementById("filtro-status");
-
-let tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
-
-function atualizarRelatorio() {
-  const total = tarefas.length;
-  const concluidas = tarefas.filter(t => t.status === "Concluída").length;
-
-  relatorio.innerHTML = `
-    <p>Total de tarefas: ${total}</p>
-    <p>Concluídas: ${concluidas}</p>
-  `;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-function salvarTarefas() {
-  localStorage.setItem("tarefas", JSON.stringify(tarefas));
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0A1F44;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-function renderizarTarefas() {
-  lista.innerHTML = '';
-  const filtro = filtroStatus.value;
-
-  // Ordenar por prioridade e data
-  const tarefasOrdenadas = [...tarefas].sort((a, b) => {
-    const prioridade = {Alta: 1, Média: 2, Baixa: 3};
-    if (prioridade[a.prioridade] !== prioridade[b.prioridade]) {
-      return prioridade[a.prioridade] - prioridade[b.prioridade];
-    }
-    return new Date(a.data) - new Date(b.data);
-  });
-
-  tarefasOrdenadas.forEach((tarefa, index) => {
-    if (filtro !== "Todas" && tarefa.status !== filtro) return;
-
-    const li = document.createElement("li");
-    li.classList.add(`prioridade-${tarefa.prioridade}`);
-    if (tarefa.status === "Concluída") li.classList.add('status-Concluída');
-
-    li.innerHTML = `
-      <strong>${tarefa.nome}</strong>
-      <p>${tarefa.descricao}</p>
-      <p>Prazo: ${tarefa.data}</p>
-      <p>Prioridade: ${tarefa.prioridade}</p>
-      <p>Status: ${tarefa.status}</p>
-      <button onclick="concluirTarefa(${index})">✅ Concluir</button>
-      <button onclick="editarTarefa(${index})">✏️ Editar</button>
-      <button onclick="removerTarefa(${index})">🗑️ Remover</button>
-    `;
-    lista.appendChild(li);
-  });
-
-  atualizarRelatorio();
+.container {
+  background-color: #122A57;
+  padding: 40px 25px;
+  border-radius: 15px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
-function concluirTarefa(index) {
-  tarefas[index].status = "Concluída";
-  salvarTarefas();
-  renderizarTarefas();
+/* ✅ Ajuste da logo com título */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
-function editarTarefa(index) {
-  const tarefa = tarefas[index];
-
-  const novoNome = prompt("Novo nome:", tarefa.nome);
-  const novaDescricao = prompt("Nova descrição:", tarefa.descricao);
-  const novaData = prompt("Nova data (AAAA-MM-DD):", tarefa.data);
-  const novaPrioridade = prompt("Nova prioridade (Alta, Média, Baixa):", tarefa.prioridade);
-
-  if (novoNome && novaData && ["Alta", "Média", "Baixa"].includes(novaPrioridade)) {
-    tarefas[index].nome = novoNome;
-    tarefas[index].descricao = novaDescricao;
-    tarefas[index].data = novaData;
-    tarefas[index].prioridade = novaPrioridade;
-    salvarTarefas();
-    renderizarTarefas();
-  } else {
-    alert("Edição cancelada ou inválida.");
-  }
+.logo {
+  width: 120px; 
+  margin-bottom: 10px;
 }
 
-function removerTarefa(index) {
-  if (confirm("Tem certeza que deseja remover esta tarefa?")) {
-    tarefas.splice(index, 1);
-    salvarTarefas();
-    renderizarTarefas();
-  }
+h1 {
+  color: #4FC3F7;
 }
 
-form.addEventListener("submit", function(e) {
-  e.preventDefault();
+h2 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  color: #4FC3F7;
+}
 
-  const nome = document.getElementById("tarefa").value.trim();
-  const descricao = document.getElementById("descricao").value.trim();
-  const data = document.getElementById("data").value;
-  const prioridade = document.getElementById("prioridade").value;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
 
-  if (nome && data) {
-    const novaTarefa = {
-      nome,
-      descricao,
-      data,
-      prioridade,
-      status: "A Fazer"
-    };
+input, textarea, select {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1em;
+}
 
-    tarefas.push(novaTarefa);
-    salvarTarefas();
-    renderizarTarefas();
-    form.reset();
-  } else {
-    alert("Preencha todos os campos obrigatórios!");
-  }
-});
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4FC3F7;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1em;
+}
 
-filtroStatus.addEventListener("change", renderizarTarefas);
+button:hover {
+  background-color: #42b0df;
+}
 
-renderizarTarefas();
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+li {
+  background-color: #1B3A75;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+li strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+li p {
+  margin-bottom: 8px;
+}
+
+/* ✅ Ajuste do espaçamento entre os botões */
+li .button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+li button {
+  flex: 1;
+  min-width: 80px;
+  text-align: center;
+  padding: 7px 12px;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+#relatorio {
+  margin-top: 40px;
+  font-size: 1em;
+}
+
+select#filtro {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.filter-label {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1em;
+  color: #ccc;
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
