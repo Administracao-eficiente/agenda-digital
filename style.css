@@ -27,7 +27,7 @@ body {
 }
 
 .logo {
-  width: 140px; /* aumente conforme quiser: 120px, 140px, etc. */
+  width: 180px;
   margin-bottom: 25px;
 }
 
@@ -37,7 +37,7 @@ h1 {
 }
 
 h2 {
-  margin-top: 40px; /* Espaço acima dos títulos como "Lista de Tarefas" */
+  margin-top: 40px;
   margin-bottom: 20px;
   color: #4FC3F7;
 }
@@ -46,7 +46,7 @@ form {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 40px; /* Mais espaço abaixo do formulário */
+  margin-bottom: 40px;
 }
 
 input, textarea, select {
@@ -76,7 +76,7 @@ button:hover {
 ul {
   list-style-type: none;
   padding: 0;
-  margin-top: 20px; /* Espaço acima da lista de tarefas */
+  margin-top: 20px;
 }
 
 li {
@@ -121,7 +121,7 @@ select#filtro {
   border-radius: 8px;
   border: none;
   margin-top: 20px;
-  margin-bottom: 40px; /* Aumentado para mais espaçamento visual */
+  margin-bottom: 40px;
 }
 
 .filter-label {
@@ -134,4 +134,40 @@ select#filtro {
 .completed {
   text-decoration: line-through;
   opacity: 0.6;
+}
+
+/* ✅ Ajuste para telas maiores (computadores) */
+@media (min-width: 768px) {
+  .container {
+    max-width: 700px;
+    padding: 60px 40px;
+  }
+
+  .logo {
+    width: 220px;
+  }
+
+  h1, h2 {
+    font-size: 2em;
+  }
+
+  input, textarea, select {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  button {
+    font-size: 1.2em;
+    padding: 15px;
+  }
+
+  li {
+    padding: 20px;
+    font-size: 1.1em;
+  }
+
+  li button {
+    font-size: 1em;
+    padding: 10px 15px;
+  }
 }
