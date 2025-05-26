@@ -7,19 +7,20 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #0A1F44; /* azul escuro */
+  background-color: #0A1F44;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  padding: 20px;
 }
 
 .container {
-  background-color: #122A57; /* azul um pouco mais claro */
-  padding: 30px;
+  background-color: #122A57;
+  padding: 40px 25px;
   border-radius: 15px;
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   text-align: center;
@@ -32,66 +33,68 @@ body {
 
 h1, h2 {
   margin-bottom: 20px;
-  color: #4FC3F7; /* Azul claro suave */
+  color: #4FC3F7;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 15px;  /* Aumentado o espaçamento */
+  margin-bottom: 30px;
 }
 
 input, textarea, select {
-  padding: 10px;
+  padding: 12px;  /* Mais espaço interno */
   border: none;
   border-radius: 8px;
   outline: none;
+  font-size: 1em;  /* Melhora para mobile */
 }
 
 button {
-  padding: 10px;
+  padding: 12px;
   border: none;
   border-radius: 8px;
-  background-color: #4FC3F7; /* Azul claro suave */
+  background-color: #4FC3F7;
   color: #000;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 1em;
 }
 
 button:hover {
-  background-color: #42b0df; /* um pouco mais escuro ao passar o mouse */
+  background-color: #42b0df;
 }
 
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 li {
-  background-color: #1B3A75; /* fundo das tarefas */
-  margin-bottom: 10px;
+  background-color: #1B3A75;
+  margin-bottom: 15px;  /* Mais espaço entre tarefas */
   padding: 15px;
   border-radius: 10px;
   text-align: left;
-  position: relative;
 }
 
 li strong {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 8px;  /* Mais espaço no título */
   font-size: 1.1em;
 }
 
 li p {
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 
 li button {
   margin-right: 10px;
   background-color: #4FC3F7;
   color: #000;
-  padding: 5px 10px;
+  padding: 7px 12px;
   border-radius: 5px;
   font-size: 0.9em;
 }
@@ -101,22 +104,22 @@ li button:hover {
 }
 
 #relatorio {
-  margin-top: 20px;
-  font-size: 0.9em;
+  margin-top: 30px;
+  font-size: 1em;
 }
 
 select#filtro {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   border: none;
   margin-bottom: 20px;
 }
 
 .filter-label {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 0.9em;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  font-size: 1em;
   color: #ccc;
 }
 
