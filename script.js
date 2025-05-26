@@ -1,149 +1,78 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+let tarefas = [];
+
+function atualizarLista() {
+  const lista = document.getElementById('lista-tarefas');
+  const filtro = document.getElementById('filtro').value;
+  lista.innerHTML = '';
+
+  tarefas.forEach((tarefa, index) => {
+    if (filtro === 'concluidas' && !tarefa.concluida) return;
+    if (filtro === 'afazer' && tarefa.concluida) return;
+
+    const li = document.createElement('li');
+    if (tarefa.concluida) li.classList.add('completed');
+
+    li.innerHTML = `
+      <strong>${tarefa.nome}</strong>
+      <p>${tarefa.descricao}</p>
+      <p>Prazo: ${tarefa.prazo}</p>
+      <p>Prioridade: ${tarefa.prioridade}</p>
+      <p>Status: ${tarefa.concluida ? 'Concluída' : 'A Fazer'}</p>
+      <div class="button-group">
+        <button onclick="concluirTarefa(${index})">✅ Concluir</button>
+        <button onclick="editarTarefa(${index})">✏️ Editar</button>
+        <button onclick="removerTarefa(${index})">🗑️ Remover</button>
+      </div>
+    `;
+    lista.appendChild(li);
+  });
+
+  atualizarRelatorio();
 }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #0A1F44;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
+function atualizarRelatorio() {
+  const relatorio = document.getElementById('relatorio');
+  const total = tarefas.length;
+  const concluidas = tarefas.filter(t => t.concluida).length;
+  relatorio.innerHTML = `
+    Total de tarefas: ${total} <br>
+    Concluídas: ${concluidas}
+  `;
 }
 
-.container {
-  background-color: #122A57;
-  padding: 40px 25px;
-  border-radius: 15px;
-  width: 100%;
-  max-width: 500px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  text-align: center;
+document.getElementById('form-tarefa').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const nome = document.getElementById('nome').value;
+  const descricao = document.getElementById('descricao').value;
+  const prazo = document.getElementById('prazo').value;
+  const prioridade = document.getElementById('prioridade').value;
+
+  tarefas.push({ nome, descricao, prazo, prioridade, concluida: false });
+  atualizarLista();
+  this.reset();
+});
+
+function concluirTarefa(index) {
+  tarefas[index].concluida = true;
+  atualizarLista();
 }
 
-/* ✅ Ajuste da logo com título */
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 25px;
+function editarTarefa(index) {
+  const tarefa = tarefas[index];
+  document.getElementById('nome').value = tarefa.nome;
+  document.getElementById('descricao').value = tarefa.descricao;
+  document.getElementById('prazo').value = tarefa.prazo;
+  document.getElementById('prioridade').value = tarefa.prioridade;
+  
+  tarefas.splice(index, 1);
+  atualizarLista();
 }
 
-.logo {
-  width: 120px; 
-  margin-bottom: 10px;
+function removerTarefa(index) {
+  tarefas.splice(index, 1);
+  atualizarLista();
 }
 
-h1 {
-  color: #4FC3F7;
-}
-
-h2 {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  color: #4FC3F7;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 40px;
-}
-
-input, textarea, select {
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-  font-size: 1em;
-}
-
-button {
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  background-color: #4FC3F7;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 1em;
-}
-
-button:hover {
-  background-color: #42b0df;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin-top: 20px;
-}
-
-li {
-  background-color: #1B3A75;
-  margin-bottom: 15px;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: left;
-}
-
-li strong {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 1.1em;
-}
-
-li p {
-  margin-bottom: 8px;
-}
-
-/* ✅ Ajuste do espaçamento entre os botões */
-li .button-group {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 10px;
-}
-
-li button {
-  flex: 1;
-  min-width: 80px;
-  text-align: center;
-  padding: 7px 12px;
-  border-radius: 5px;
-  font-size: 0.9em;
-}
-
-#relatorio {
-  margin-top: 40px;
-  font-size: 1em;
-}
-
-select#filtro {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: none;
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-.filter-label {
-  margin-top: 30px;
-  margin-bottom: 10px;
-  font-size: 1em;
-  color: #ccc;
-}
-
-.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
+document.getElementById('filtro').addEventListener('change', atualizarLista);
 
