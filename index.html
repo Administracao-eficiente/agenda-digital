@@ -1,45 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agenda Digital</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Logo da Agenda" class="logo"/>
-    <h1>Agenda Digital</h1>
+    <div class="header">
+      <img src="sua-logo.png" alt="Logo" class="logo">
+      <h1>Agenda Digital</h1>
+    </div>
 
     <form id="form-tarefa">
-      <input type="text" id="tarefa" placeholder="Nome da Tarefa" required />
-      <textarea id="descricao" placeholder="Descrição da Tarefa"></textarea>
-      <input type="date" id="data" required />
+      <input type="text" id="nome" placeholder="Nome da Tarefa" required>
+      <textarea id="descricao" placeholder="Descrição da Tarefa" required></textarea>
+      <input type="date" id="prazo" required>
       <select id="prioridade">
-        <option>Alta</option>
-        <option>Média</option>
-        <option>Baixa</option>
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
       </select>
       <button type="submit">Adicionar</button>
     </form>
 
-    <div class="filtros">
-      <label for="filtro-status">Filtrar:</label>
-      <select id="filtro-status">
-        <option value="Todas">Todas</option>
-        <option value="A Fazer">A Fazer</option>
-        <option value="Concluída">Concluídas</option>
-      </select>
-    </div>
+    <label class="filter-label" for="filtro">Filtrar:</label>
+    <select id="filtro">
+      <option value="todas">Todas</option>
+      <option value="afazer">A Fazer</option>
+      <option value="concluidas">Concluídas</option>
+    </select>
 
     <h2>Lista de Tarefas</h2>
-    <ul id="lista"></ul>
+    <ul id="lista-tarefas"></ul>
 
     <h2>Relatório de Produtividade</h2>
-    <div id="relatorio">
-      <p>Total de tarefas: 0</p>
-      <p>Concluídas: 0</p>
-    </div>
+    <div id="relatorio"></div>
   </div>
 
   <script src="script.js"></script>
