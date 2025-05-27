@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agenda Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <img src="logo.png" alt="Logo" class="logo">
+      <h1>Agenda Digital</h1>
+      <button onclick="logout()">Sair</button>
+    </div>
+
+    <form id="form-tarefa">
+      <input type="text" id="nome" placeholder="Nome da Tarefa" required>
+      <textarea id="descricao" placeholder="Descrição da Tarefa" required></textarea>
+      <input type="date" id="prazo" required>
+      <select id="prioridade">
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
+      </select>
+      <button type="submit">Adicionar</button>
+    </form>
+
+    <label class="filter-label" for="filtro">Filtrar:</label>
+    <select id="filtro">
+      <option value="todas">Todas</option>
+      <option value="afazer">A Fazer</option>
+      <option value="concluidas">Concluídas</option>
+    </select>
+
+    <h2>Lista de Tarefas</h2>
+    <ul id="lista-tarefas"></ul>
+
+    <h2>Relatório de Produtividade</h2>
+    <div id="relatorio"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script type="module">
+    import { logout } from './auth.js';
+    window.logout = logout;
+  </script>
+</body>
+</html>
