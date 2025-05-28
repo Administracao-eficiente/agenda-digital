@@ -1,9 +1,0 @@
-{
-  "name": "agenda-digital",
-  "version": "1.0.0",
-  "description": "Agenda Digital com Firebase Auth",
-  "scripts": {
-    "start": "live-server"
-  },
-  "dependencies": {}
-}
