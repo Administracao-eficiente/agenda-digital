@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0A1F44;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.login-container {
+  background-color: #122A57;
+  padding: 40px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 25px;
+  color: #4FC3F7;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+input {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  background-color: #1B3A75;
+  color: #fff;
+  border: 1px solid #4FC3F7;
+  width: 100%;
+}
+
+input::placeholder {
+  color: #ccc;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #4FC3F7;
+  color: #000;
+  font-weight: bold;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+}
+
+button:hover {
+  background-color: #42b0df;
+  transform: scale(1.05);
+}
+
+.google-button {
+  background-color: #ffffff;
+  color: #000;
+  border: 1px solid #ccc;
+  margin-top: 15px;
+}
+
+.google-button:hover {
+  background-color: #e0e0e0;
+}
+
+.register-text {
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.register-text a {
+  color: #4FC3F7;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.register-text a:hover {
+  text-decoration: underline;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  font-size: 1.5em;
+  cursor: pointer;
+  z-index: 999;
+}
+
+/* Modo claro */
+body.light-mode {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+body.light-mode .login-container {
+  background-color: #fff;
+}
+
+body.light-mode input {
+  background-color: #e0e0e0;
+  color: #000;
+  border: 1px solid #333;
+}
+
+body.light-mode button {
+  background-color: #333;
+  color: #fff;
+}
+
+body.light-mode .google-button {
+  background-color: #fff;
+  color: #000;
+}
+
+body.light-mode .theme-toggle {
+  color: #333;
+}

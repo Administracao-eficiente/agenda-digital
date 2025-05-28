@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Agenda Digital</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+    <span id="theme-icon">🌙</span>
+  </div>
+
+  <div class="login-container">
+    <img src="logo.png" alt="Logo" class="logo">
+    <h2>Login</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="senha" placeholder="Senha" required />
+      <button type="submit">Entrar</button>
+    </form>
+
+    <button type="button" id="google-login" class="google-button">Entrar com Google</button>
+
+    <p class="register-text">
+      Não tem uma conta?
+      <a href="cadastro.html">Cadastre-se</a>
+    </p>
+  </div>
+
+  <script type="module" src="login.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const icon = document.getElementById('theme-icon');
+      icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>
