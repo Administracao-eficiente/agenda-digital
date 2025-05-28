@@ -38,3 +38,21 @@
   </script>
 </body>
 </html>
+
+
+    <p class="register-text">
+      Não tem uma conta?
+      <a href="cadastro.html">Cadastre-se</a>
+    </p>
+  </div>
+
+  <script type="module" src="login.js"></script>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const icon = document.getElementById('theme-icon');
+      icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>
