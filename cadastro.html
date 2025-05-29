@@ -4,8 +4,44 @@
   <meta charset="UTF-8">
   <title>Cadastro - Agenda Digital</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: transparent;
+      color: inherit;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    body.light-mode {
+      background-color: #f0f0f0;
+      color: #000;
+    }
+
+    body.light-mode .container {
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    body.light-mode input,
+    body.light-mode button {
+      background-color: #e0e0e0;
+      color: #000;
+    }
+
+    body.light-mode a {
+      color: #007BFF;
+    }
+  </style>
 </head>
 <body>
+  <div class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+    <span id="theme-icon">🌙</span>
+  </div>
+
   <div class="container">
     <div class="header">
       <img src="logo.png" alt="Logo" class="logo">
@@ -30,6 +66,14 @@
       const senha = document.getElementById('senha').value;
       registerWithEmail(email, senha);
     });
+  </script>
+
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('light-mode');
+      const icon = document.getElementById('theme-icon');
+      icon.textContent = document.body.classList.contains('light-mode') ? '☀️' : '🌙';
+    }
   </script>
 </body>
 </html>
