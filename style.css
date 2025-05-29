@@ -192,36 +192,68 @@ select#filtro {
 
 /* Modo Claro */
 body.light-mode {
-  background-color: #f0f0f0;
-  color: #333;
+  background-color: #f0f4f8;
+  color: #1a237e;
 }
 
 body.light-mode .container {
-  background-color: #fff;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 body.light-mode input,
 body.light-mode textarea,
 body.light-mode select,
 body.light-mode li {
-  background-color: #e0e0e0;
-  color: #000;
-  border: 1px solid #333;
+  background-color: #f5faff;
+  color: #1a237e;
+  border: 1px solid #64b5f6;
 }
 
 body.light-mode h1,
 body.light-mode h2 {
-  color: #333;
+  color: #1a237e;
 }
 
 body.light-mode .header button,
 body.light-mode button,
 body.light-mode li button {
-  background-color: #333;
+  background-color: #1a237e;
   color: #fff;
 }
 
+body.light-mode li p {
+  color: #444;
+}
+
 body.light-mode .theme-toggle {
-  color: #333;
+  color: #1a237e;
+}
+
+body.light-mode select#filtro {
+  background-color: #f5faff;
+  color: #1a237e;
+  border: 1px solid #64b5f6;
+}
+
+body.light-mode .filter-label,
+body.light-mode #relatorio {
+  color: #1a237e;
+}
+
+body.light-mode li strong {
+  color: #1a237e;
+}
+
+/* ALTERAÇÃO: cor branca para título da Lixeira em ambos os modos */
+.side-menu h2 {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+body.light-mode .side-menu h2 {
+  color: #fff;
 }
 
